@@ -5,6 +5,7 @@ from PIL import Image
 # get command line arguments
 size = sys.argv[1] 
 time = sys.argv[2]
+millis = sys.argv[3]
 
 # offload the work to c++
 subprocess.run('./gol_to_array {} {}'.format(size, time), shell=True)
@@ -15,7 +16,7 @@ for infile in sorted(glob.glob('pics/*.png')):
     sorted_png.append(Image.open(infile))   
 
 # and save it as a gif
-sorted_png[0].save('gol.gif', save_all=True, append_images=sorted_png[1:], duration=100, loop=0)
+sorted_png[0].save('gol.gif', save_all=True, append_images=sorted_png[1:], duration=millis, loop=0)
 
 # cleanup after yourself
 folder = './pics'
